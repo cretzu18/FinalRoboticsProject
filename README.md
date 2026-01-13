@@ -61,3 +61,18 @@ The miminum demo for this project will have this four actions complete functiona
 
 Most tutorials cover only one compoment while I have to design a shared bus architecture to prevent the screen, SD card and camera from colliding on the same pins. It has a custom logic like the mechanical flip of the camera or the conversion of the high resolution JPEFs into dithered printer patterns.
 
+
+## State Diagram
+
+| State     | Primary Function                                      | Input / Trigger          | Next State |
+|-----------|-------------------------------------------------------|--------------------------|------------|
+| INIT      | Boot Hardware (SD, Camera, TFT, Wi-Fi)                | System Power On          | IDLE       |
+| IDLE      | Live viewfinder; polls selfie switch                  | Button Press             | CAPTURE    |
+| CAPTURE   | Saves high-res JPEG to SD card                         | File Write Success      | DITHER     |
+| DITHER    | Image processing (8-bit to 1-bit conversion)           | Processing Complete     | PRINTING   |
+| PRINTING  | Serial data transfer to thermal printer                | Page Feed Finish        | IDLE       |
+| ERROR     | Display hardware fault on TFT                          | Critical Failure        | INIT (Reset) |
+
+<img width="466" height="724" alt="Screenshot 2026-01-13 222447" src="https://github.com/user-attachments/assets/57783339-c0b4-4983-9c18-1a14a1f034e2" />
+
+
