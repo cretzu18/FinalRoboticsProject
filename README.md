@@ -6,6 +6,8 @@ The Instant Camera project is a modern, DIY take on the classic [instant camera]
 
 ## BOM (Bill Of Materials)
 
+❗❗❗ I will buy the components myself.
+
 - ESP32-CAM
 - OV2640 Camera Sensor
 - TFT LCD Display
